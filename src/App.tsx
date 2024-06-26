@@ -1,7 +1,11 @@
 import { useState } from "react";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { AccountInfo, EventType, IPublicClientApplication } from "@azure/msal-browser";
+import {
+  AccountInfo,
+  EventType,
+  IPublicClientApplication,
+} from "@azure/msal-browser";
 import {
   AuthenticatedTemplate,
   MsalProvider,
@@ -13,7 +17,7 @@ type AppProps = {
 };
 
 function App({ msalInstance }: AppProps) {
-  const [account, setAccount] = useState<AccountInfo|null>(null);
+  const [account, setAccount] = useState<AccountInfo | null>(null);
 
   function handleLogin() {
     console.log("handleLogin");
@@ -22,6 +26,7 @@ function App({ msalInstance }: AppProps) {
 
   // Listen for sign-in event and set active account
   msalInstance.addEventCallback((event) => {
+    console.log("APP event:", event ?? "");
     if (
       event.eventType === EventType.LOGIN_SUCCESS &&
       event?.payload?.account

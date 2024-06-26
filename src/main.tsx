@@ -27,6 +27,7 @@ if (!msalInstance.getActiveAccount() && msalInstance.getAllAccounts().length > 0
 
   // Listen for sign-in event and set active account
   msalInstance.addEventCallback((event) => {
+    console.log("main event:", event ?? "");
   if (
     event.eventType === EventType.LOGIN_SUCCESS &&
     event?.payload?.account
